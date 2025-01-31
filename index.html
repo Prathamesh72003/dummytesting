@@ -12,6 +12,14 @@
         const url = window.location.href;
         window.open(url, "_blank");
       };
+
+      function detectInstagramBrowser() {
+        if (navigator.userAgent.includes("Instagram")) {
+
+          openInDefaultBrowser();
+        }
+      }
+      window.onload = detectInstagramBrowser;
     </script>
   </body>
 </html>
