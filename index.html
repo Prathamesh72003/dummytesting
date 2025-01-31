@@ -7,24 +7,17 @@
   </head>
   <body>
     <h1>Hey</h1>
-    <button id="openBrowserButton" style="display:none;">Open in Browser</button> <!-- Hidden Button -->
+    <button id="openBrowserButton" style="display: none">
+      Open in Browser
+    </button>
+    <!-- Hidden Button -->
 
     <script>
       const openInDefaultBrowser = () => {
         const url = window.location.href;
-        const userAgent = navigator.userAgent.toLowerCase();
+        const deepLink = `googlechrome://${url.replace(/^https?:\/\//, "")}`;
 
-        // Check if the user is on iOS or Android WebView
-        if (/iphone|ipod|ipad/.test(userAgent)) {
-          // For iOS, open using the external browser
-          window.location.href = url;
-        } else if (/wv|android.*version\/[\d.]+.*chrome\/[.0-9]* mobile safari/.test(userAgent)) {
-          // For Android WebView, also try to redirect
-          window.location.href = url;
-        } else {
-          // Default: Open in a new window/tab
-          window.open(url, "_blank");
-        }
+        window.location.replace(deepLink);
       };
 
       const isWebview = () => {
@@ -38,7 +31,9 @@
           return !standalone && !isSafari; // iOS WebView detection
         }
 
-        return /wv|android.*version\/[\d.]+.*chrome\/[.0-9]* mobile safari/.test(userAgent);
+        return /wv|android.*version\/[\d.]+.*chrome\/[.0-9]* mobile safari/.test(
+          userAgent
+        );
       };
 
       window.onload = () => {
@@ -52,9 +47,11 @@
       };
 
       // Add event listener for the button
-      document.getElementById("openBrowserButton").addEventListener("click", () => {
-        openInDefaultBrowser();
-      });
+      document
+        .getElementById("openBrowserButton")
+        .addEventListener("click", () => {
+          openInDefaultBrowser();
+        });
     </script>
   </body>
 </html>
