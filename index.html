@@ -3,22 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Redirect from Instagram Browser</title>
   </head>
   <body>
-    <h1>hey</h1>
+    <h1>Hey</h1>
+    <p>If you are using the Instagram in-app browser, you will be redirected.</p>
+
     <script>
-      const openInDefaultBrowser = () => {
+      function isInstagramInAppBrowser() {
+        return navigator.userAgent.includes("Instagram");
+      }
+
+      function openInDefaultBrowser() {
         const url = window.location.href;
-        window.open(url, "_blank");
-      };
+        window.location = `googlechrome://${url.replace("https://", "").replace("http://", "")}`;
+        
+        // Fallback for iOS (Safari)
+        setTimeout(() => {
+          window.location = url;
+        }, 500);
+      }
 
       function detectInstagramBrowser() {
-        if (navigator.userAgent.includes("Instagram")) {
-
+        if (isInstagramInAppBrowser()) {
+          alert("Open this page in your default browser for better experience.");
           openInDefaultBrowser();
         }
       }
+
       window.onload = detectInstagramBrowser;
     </script>
   </body>
