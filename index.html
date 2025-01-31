@@ -12,7 +12,19 @@
     <script>
       const openInDefaultBrowser = () => {
         const url = window.location.href;
-        window.open(url, "_blank");
+        const userAgent = navigator.userAgent.toLowerCase();
+
+        // Check if the user is on iOS or Android WebView
+        if (/iphone|ipod|ipad/.test(userAgent)) {
+          // For iOS, open using the external browser
+          window.location.href = url;
+        } else if (/wv|android.*version\/[\d.]+.*chrome\/[.0-9]* mobile safari/.test(userAgent)) {
+          // For Android WebView, also try to redirect
+          window.location.href = url;
+        } else {
+          // Default: Open in a new window/tab
+          window.open(url, "_blank");
+        }
       };
 
       const isWebview = () => {
