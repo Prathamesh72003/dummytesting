@@ -6,8 +6,9 @@
     <title>WebView Detection</title>
   </head>
   <body>
-    <h1>hey changed</h1>
-    <a href={location.href} target='_blank' download>Open in browser</a>
+    <h1>Hey</h1>
+    <button id="openBrowserButton" style="display:none;">Open in Browser</button> <!-- Hidden Button -->
+
     <script>
       const openInDefaultBrowser = () => {
         const url = window.location.href;
@@ -31,11 +32,17 @@
       window.onload = () => {
         if (isWebview()) {
           alert("WebView detected");
-          setTimeout(openInDefaultBrowser, 100); // Delay to prevent blocking
+          // Show the button after detection
+          document.getElementById("openBrowserButton").style.display = "block";
         } else {
           alert("Not a WebView");
         }
       };
+
+      // Add event listener for the button
+      document.getElementById("openBrowserButton").addEventListener("click", () => {
+        openInDefaultBrowser();
+      });
     </script>
   </body>
 </html>
