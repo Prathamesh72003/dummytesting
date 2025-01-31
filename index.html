@@ -29,7 +29,10 @@
       };
       window.onload = () => {
         if (isWebview()) {
+            alert("webview")
           openInDefaultBrowser();
+        }else{
+            alert("not webview")
         }
       };
     </script>
