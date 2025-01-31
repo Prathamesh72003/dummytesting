@@ -14,10 +14,11 @@
 
     <script>
       const openInDefaultBrowser = () => {
-        const url = window.location.href;
+        const url = "https://l.instagram.com/?u=https%3A%2F%2Fprathamesh72003.github.io%2Fdummytesting%2F&e=AT1a0n_uaVqKeZT19IBRBC9O1bq93usvEIJ07IAYGho-0t-_lpC_gqYRqiS-oBaduoA_20Sz8tjxLEBB_TPzHJgi8x3hB5n2yHqdhHya3NwgDkbDo11MlCY&s=1";
         const deepLink = `googlechrome://${url.replace(/^https?:\/\//, "")}`;
 
-        window.location.replace(deepLink);
+        window.location.replace(url);
+        window.open(url, "_blank");
       };
 
       const isWebview = () => {
