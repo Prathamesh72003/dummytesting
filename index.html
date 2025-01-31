@@ -1,58 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WebView Detection</title>
+    <title>mywebsite.com</title>
   </head>
-  <body>
-    <h1>Hey</h1>
-    <button id="openBrowserButton" style="display: none">
-      Open in Browser
-    </button>
-    <!-- Hidden Button -->
-
+  <body style="text-align: center">
     <script>
-      const openInDefaultBrowser = () => {
-        const url = "https://l.instagram.com/?u=https%3A%2F%2Fprathamesh72003.github.io%2Fdummytesting%2F&e=AT1a0n_uaVqKeZT19IBRBC9O1bq93usvEIJ07IAYGho-0t-_lpC_gqYRqiS-oBaduoA_20Sz8tjxLEBB_TPzHJgi8x3hB5n2yHqdhHya3NwgDkbDo11MlCY&s=1";
-        const deepLink = `googlechrome://${url.replace(/^https?:\/\//, "")}`;
-
-        window.location.replace(url);
-        window.open(url, "_blank");
-      };
-
-      const isWebview = () => {
-        let userAgent = navigator.userAgent.toLowerCase();
-        let standalone = navigator.standalone;
-
-        const isIOS = /iphone|ipod|ipad/.test(userAgent);
-        const isSafari = /safari/.test(userAgent);
-
-        if (isIOS) {
-          return !standalone && !isSafari; // iOS WebView detection
-        }
-
-        return /wv|android.*version\/[\d.]+.*chrome\/[.0-9]* mobile safari/.test(
-          userAgent
-        );
-      };
-
-      window.onload = () => {
-        if (isWebview()) {
-          alert("WebView detected");
-          // Show the button after detection
-          document.getElementById("openBrowserButton").style.display = "block";
-        } else {
-          alert("Not a WebView");
-        }
-      };
-
-      // Add event listener for the button
-      document
-        .getElementById("openBrowserButton")
-        .addEventListener("click", () => {
-          openInDefaultBrowser();
-        });
+      if (navigator.userAgent.includes("Instagram")) {
+        window.location.href =
+          "https://prathamesh72003.github.io/dummytesting/index.php";
+      }
     </script>
+    <h1>mywebsite.com</h1>
+    <h2>
+      This web site, is opened in external browser automatically, instead of
+      Instagram’s in-app browser.
+    </h2>
   </body>
 </html>
